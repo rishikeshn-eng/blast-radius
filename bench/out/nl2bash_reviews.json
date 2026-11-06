@@ -1,0 +1,1602 @@
+[
+  {
+    "command": "sudo cp mymodule.ko /lib/modules/$(uname -r)/kernel/drivers/",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "sudo lsusb -t|less",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "sudo lsusb -v|less",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "for a in `find . -name '*.py'` ; do cp \"$a\" \"$a.cp\" ; echo \"Added line\" > \"$a\" ; cat \"$a.cp\" >> \"$a\" ; rm \"$a.cp\" ; done",
+    "why": "`cp` creates $a.cp \u2014 a path that can't be resolved."
+  },
+  {
+    "command": "find /volume1/uploads -name \"*.mkv\" -exec mv \\{\\} \\{\\}.avi \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "cat <(crontab -l) <(echo \"1 2 3 4 5 scripty.sh\") | crontab -",
+    "why": "`crontab` changes scheduled jobs that run automatically later."
+  },
+  {
+    "command": "ping google.com | xargs -L 1 -I '{}' date '+%c: {}'",
+    "why": "`ping` contacts the network."
+  },
+  {
+    "command": "ping host | perl -nle 'print scalar(localtime), \" \", $_'",
+    "why": "`ping` contacts the network."
+  },
+  {
+    "command": "crontab -l -u user | cat - filename | crontab -u user -",
+    "why": "`crontab` changes scheduled jobs that run automatically later."
+  },
+  {
+    "command": "cat file1 file2 | crontab",
+    "why": "`crontab` changes scheduled jobs that run automatically later."
+  },
+  {
+    "command": "crontab filename",
+    "why": "`crontab` changes scheduled jobs that run automatically later."
+  },
+  {
+    "command": "sudo chmod +x java_ee_sdk-6u2-jdk-linux-x64.sh",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "chmod g+w $(ls -1a | grep -v '^..$')",
+    "why": "`chmod` chmods $(\u2026) \u2014 a path that can't be resolved."
+  },
+  {
+    "command": "find . -maxdepth 0 -type f -exec chmod g+w {} ';'",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "for filename in *.jpg; do mv \"$filename\" \"prefix_$filename\"; done;",
+    "why": "`mv` deletes $filename \u2014 a path that can't be resolved."
+  },
+  {
+    "command": "sudo chmod +rx $(which node)",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "find . -type d -exec chmod +rx {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -name \"rc.conf\" -exec chmod o+r '{}' \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "chmod +x $(brew --prefix)/etc/bash_completion",
+    "why": "`brew` contacts the network."
+  },
+  {
+    "command": "touch -d \"$(date -r \"$filename\") - 2 hours\" \"$filename\"",
+    "why": "`touch` creates $filename \u2014 a path that can't be resolved."
+  },
+  {
+    "command": "ssh -t example.com \"screen -r -X ls\"",
+    "why": "`ssh` contacts the network."
+  },
+  {
+    "command": "ssh -t example.com \"screen -r; ls\"",
+    "why": "`ssh` contacts the network."
+  },
+  {
+    "command": "ssh -t example.com \"screen -r\"",
+    "why": "`ssh` contacts the network."
+  },
+  {
+    "command": "chmod a+x $pathToShell\"myShell.sh\"",
+    "why": "`chmod` chmods $pathToShellmyShell.sh \u2014 a path that can't be resolved."
+  },
+  {
+    "command": "sudo chmod u+s `which Xvfb`",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "ssh -fL 127.0.0.1:someport:host.in.the.remote.net:22 proxy.host",
+    "why": "`ssh` contacts the network."
+  },
+  {
+    "command": "yes no | <command>",
+    "why": "Command could not be parsed (redirect '>' has no target); run it only after manual review."
+  },
+  {
+    "command": "find . \\( -iname \"*.png\" -o -iname \"*.jpg\" \\) -print -exec tar -rf images.tar {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -mtime -1 -type f -exec tar rvf \"$archive.tar\" '{}' \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -name text.txt | sed 's|.*/\\(.*\\)/.*|sed -i \"s@^@\\1 @\" & |' | sh",
+    "why": "`sh` runs commands from standard input (often a piped download); effects can't be seen."
+  },
+  {
+    "command": "find dir -name image\\*.jpg -exec /bin/ksh script.ksh {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -regex \"xxx-xxx_[a-zA-Z]+_[0-9]+_[0-9]+\\.jpg$\" -exec ./rename.sh \"{}\" \";\"",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "rsync -rvz -e 'ssh -p 2222' --progress ./dir user@host:/path",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -av --copy-dirlinks --delete ../htmlguide ~/src/",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -avh /home/abc/* /mnt/windowsabc",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -a --stats --progress --delete /home/path server:path",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -av /home/user1 wobgalaxy02:/home/user1",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -avz --progress local/path/some_file usr@server.com:\"/some/path/\"",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -avzru --delete-excluded server:/media/10001/music/ /media/Incoming/music/",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -avzru --delete-excluded /media/Incoming/music/ server:/media/10001/music/",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -av --exclude '*.svn' user@server:/my/dir .",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -avv source_host:path/to/application.ini ./application.ini",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -avz -e \"ssh -p $portNumber\" user@remote.host:/path/to/copy /local/path",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -chavzP --stats user@remote.host:/path/to/copy /path/to/local/storage",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -chavzP --stats /path/to/copy user@host.remoted.from:/path/to/local/storage",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -avlzp user@remotemachine:/path/to/files /path/to/this/folder",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -av --rsync-path=\"sudo rsync\" /path/to/files user@targethost:/path",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -av /path/to/files user@targethost:/path",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -azP -e \"ssh -p 2121\" /path/to/files/source user@remoteip:/path/to/files/destination",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -avlzp /path/to/sfolder name@remote.server:/path/to/remote/dfolder",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -aHvz /path/to/sfolder name@remote.server:/path/to/remote/dfolder",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -aHvz /path/to/sfolder/ name@remote.server:/path/to/remote/dfolder",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -avz --ignore-existing /source folder/* user@remoteserver:/dstfolder/",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -ravz /source/backup /destination",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -a --relative /top/a/b/c/d remote:/",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync --progress -avhe ssh /usr/local/  XXX.XXX.XXX.XXX:/BackUp/usr/local/",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -rave \"ssh -i /home/test/pkey_new.pem\" /var/www/test/ ubuntu@231.210.24.48:/var/www/test",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -av <SOURCE_DIR> rsyncuser@192.168.1.110:/srv/www/prj112/myfolder",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -aqz _vim/ ~/.vim",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -aqz _vimrc ~/.vimrc",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -a --delete blanktest/ test/",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -aPSHiv remote:directory .",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -ave ssh fileToCopy ssh.myhost.net:/some/nonExisting/dirToCopyTO",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -avR foo/bar/baz.c remote:/tmp/",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -a myfile /foo/bar/",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -vuar --delete-after path/subfolder/ path/",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -a --exclude .svn path/to/working/copy path/to/export",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -avR somedir/./foo/bar/baz.c remote:/tmp/",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -azP -e \"ssh -p PORT_NUMBER\" source destination",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -rvz --chmod=ugo=rwX -e ssh source destination",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -avz --rsh='ssh -p3382' source root@remote_server_name:/opt/backups",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -avz --chmod=ug=rwx --chmod=o=rx -e ssh src dest",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -a -v src dst",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -a -v --ignore-existing src dst",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -av --delete src-dir remote-user@remote-host:dest-dir",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -avz foo:src/bar /data/tmp",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -azvu -e ssh user@host1:/directory/ user@host2:/directory2/",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -avz -e \"ssh -p $portNumber\" user@remoteip:/path/to/files/ /local/path/",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -aP --include=*/ --include=*.txt --exclude=* . /path/to/dest",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "find *.1  -exec tar czf '{}.tgz' '{}' --remove-files \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -name \\*.xml | grep -v /workspace/ | tr '\\n' '\\0' | xargs -0 tar -cf xml.tar",
+    "why": "`tar` recursively creates . \u2014 the whole project directory."
+  },
+  {
+    "command": "find /path/to/directory/* -maxdepth 0 -type d -printf \"%P\\n\" -exec sudo tar -zcpvf {}.tar.gz {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find /path/* -maxdepth 0 -type d -exec sudo tar -zcpvf {}.tar.gz {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find data/ -name 'filepattern-*2009*' -exec tar uf 2009.tar '{}' +",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find data/ -name filepattern-*2009* -exec tar uf 2009.tar {} ;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "rsync -a -f\"+ info.txt\" -f\"+ data.zip\" -f'-! */' folder1/ copy_of_folder1/",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -vaut ~/.env* ~/.bash* app1:",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -av --files-from=- --rsync-path=\"sudo rsync\" /path/to/files user@targethost:/path",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -av remote_host:'$(find logs -type f -ctime -1)' local_dir",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -auve \"ssh -p 2222\" . me@localhost:/some/path",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -av . server2::sharename/B",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -az --delete /mnt/data/ /media/WD_Disk_1/current_working_data/;",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync symdir/ symdir_output/ -a --copy-links -v",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -avz tata/ tata2/",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -avR $i /iscsi;",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -av $myFolder .",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -a --filter=\"-! */\" sorce_dir/ target_dir/",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -a /mnt/source-tmp /media/destination/",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -avz --rsh=\"ssh -p$2\" key.pub $1:~/.ssh/key.pub",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "sudo rsync -az user@10.1.1.2:/var/www/ /var/www/",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "rsync -av --progress sourcefolder /destinationfolder --exclude thefoldertoexclude",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -av --progress --exclude=*.VOB --exclude=*.avi --exclude=*.mkv --exclude=*.ts --exclude=*.mpg --exclude=*.iso --exclude=*ar --exclude=*.vob --exclude=*.BUP --exclude=*.cdi --exclude=*.ISO --exclude=*.shn --exclude=*.MPG --exclude=*.AVI --exclude=*.DAT --exclude=*.img --exclude=*.nrg --exclude=",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "sudo crontab -e -u apache",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "ifconfig eth0 hw ether 00:80:48:BA:d1:30",
+    "why": "`ifconfig` contacts the network."
+  },
+  {
+    "command": "tmux attach -t <session name>",
+    "why": "Command could not be parsed (redirect '>' has no target); run it only after manual review."
+  },
+  {
+    "command": "scp -p /home/reportuser/dailyReport.doc root@localhost:/root/dailyReports/20150105/",
+    "why": "`scp` contacts the network."
+  },
+  {
+    "command": "scp -o StrictHostKeyChecking=no root@IP:/root/K",
+    "why": "`scp` contacts the network."
+  },
+  {
+    "command": "scp -rp \"DAILY_TEST_FOLDER\" \"root@${IPADDRESS}:/home/root/\"",
+    "why": "`scp` contacts the network."
+  },
+  {
+    "command": "yes | sudo rpm -Uvh https://mirror.webtatic.com/yum/el6/latest.rpm",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "find . -name \"*.java\" -exec cp {} {}.bk \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "ifconfig eth0 down",
+    "why": "`ifconfig` contacts the network."
+  },
+  {
+    "command": "find . -type f | while read f; do g=`md5sum $f | awk '{print $1}'`; echo \"$g $f\"> $f-$g.md5; done",
+    "why": "`echo` writes $f-$g.md5 \u2014 a path that can't be resolved."
+  },
+  {
+    "command": "find . -type f | while read f; do g=`md5sum $f` > $f.md5; done",
+    "why": "`redirect` writes $f.md5 \u2014 a path that can't be resolved."
+  },
+  {
+    "command": "find . -type f -exec md5sum {} \\; > MD5SUMS",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type f -exec md5sum \\{\\} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find //path/to/source/Directory -type f -exec md5sum {} + | awk '{print $0}' > Output.txt",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find -maxdepth 1 -type f -exec md5sum {} \\; | sed 's/[^(]*(\\([^)]*\\)) =/\\1/'",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find -maxdepth 1 -type f -exec md5sum {} \\; | awk '{s=$2; $2=$1; $1=s;}1'",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find /path -type f -name \"*.py\" -exec md5sum \"{}\" +;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find /path/to/dir/ -type f -name *.py -exec md5sum {} + | awk '{print $1}' | sort | md5sum",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find -iname \"MyCProgram.c\" -exec md5sum {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find /path/to/dir/ -type f -name \"*.py\" -exec md5sum {} + | awk '{print $1}' | sort | md5sum",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "echo foo | tee >(sha1sum) >(md5sum)",
+    "why": "`tee` writes $(\u2026) \u2014 a path that can't be resolved."
+  },
+  {
+    "command": "find \"$PWD\" / -iname '*.jpg' -exec du -s {} + | sed \"s/^/$(hostname): /\"",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -name \"*jpg\" -exec du -k {} \\; | awk '{ total += $1 } END { print total/1024 \" Mb total\" }'",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "crontab -l | sed '/anm\\.sh/s#\\/5#\\/10#' | crontab -",
+    "why": "`crontab` changes scheduled jobs that run automatically later."
+  },
+  {
+    "command": "crontab -l | sed '/anm\\.sh/s,^\\*/5,*/10,' | crontab -",
+    "why": "`crontab` changes scheduled jobs that run automatically later."
+  },
+  {
+    "command": "sudo find ./bootstrap/cache/ -type d -exec chown apache:laravel {} \\;",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "sudo find ./storage/ -type d -exec chown apache:laravel {} \\;",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "find htdocs -type f -exec chmod 664 {} + -o -type d -exec chmod 775 {} +",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . \\( \\! -user xx -exec chown -- xx '{}' + -false \\)",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "sudo find /var/www -nouser -exec chown root:apache {} \\;",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "source <(export | sed 's/gcc.4.2/gcc64/g')",
+    "why": "`source` executes another script in this shell; its effects depend on that file."
+  },
+  {
+    "command": "cd $( ~/marker.sh go \"$@\" )",
+    "why": "Program name is computed at runtime (~/marker.sh); its effects can't be checked statically."
+  },
+  {
+    "command": "sudo  find /var/www/html/ -type d -exec chmod 775 {} \\;",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "sudo  find /var/www/html/ -type f -exec chmod 664 {} \\;",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "find . -name \"*.css\" -exec sed -i -r 's/#(FF0000|F00)\\b/#0F0/' {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "chown -v root:root /path/to/yourapp",
+    "why": "`chown` chowns /path/to/yourapp \u2014 outside the project."
+  },
+  {
+    "command": "find /path/to/directory -type f -exec chmod 644 {} +",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find / -group 2000 -exec chgrp -h foo {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -name '*.php' -exec chmod 755 {} \\; | tee logfile.txt",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "chown user_name file",
+    "why": "`chown` chowns file \u2014 inside the project."
+  },
+  {
+    "command": "sudo chown root:wheel com.xxxx.adbind.plist",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "chown root:root script.sh",
+    "why": "`chown` chowns script.sh \u2014 inside the project."
+  },
+  {
+    "command": "chown user_name folder",
+    "why": "`chown` chowns folder \u2014 inside the project."
+  },
+  {
+    "command": "sudo chown el my_test_expect.exp",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "chown $1:httpd .htaccess",
+    "why": "`chown` chowns .htaccess \u2014 inside the project."
+  },
+  {
+    "command": "chown $FUID:$FGID \"$FILE2\"",
+    "why": "`chown` chowns $FILE2 \u2014 a path that can't be resolved."
+  },
+  {
+    "command": "chown -- \"$user:$group\" \"$file\"",
+    "why": "`chown` chowns $file \u2014 a path that can't be resolved."
+  },
+  {
+    "command": "sudo chown bob:sftponly /home/bob/writable",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "sudo chown root:wheel adbind.bash",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "sudo chown root:wheel bin",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "sudo chown root:www-data /foobar/test_file",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "sudo chown `whoami` /data/db",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "sudo chown `whoami` /vol",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "find /path/to/look/in/ -type d -name '.texturedata' -exec chmod 000 {} \\; -prune",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find -perm 777 | xargs -I@ sudo chmod 755 '@'",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "find . -name \"*.php\" -exec chmod 755 {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -name \"*.php\" -exec chmod 755 {} + -printf '.' | wc -c",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -name \"*.php\" -exec chmod 755 {} \\; -exec /bin/echo {} \\; | wc -l",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "chmod 444 .bash_logout .bashrc .profile",
+    "why": "`chmod` chmods .bash_logout, which runs automatically later (shell start-up, hook or scheduler)."
+  },
+  {
+    "command": "sudo chmod 755 .git/hooks/pre-commit",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "sudo chmod 777 .git/hooks/prepare-commit-msg",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "sudo chmod 755 /dvtcolorconvert.rb",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "sudo chmod 755 mksdcard",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "find . -type d -exec chmod 755 {} +",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -name \"*.php\" -exec chmod 755 {} + -printf '.' | wc -c",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -name '*.php' -exec chmod 755 {} \\; -exec echo '+' \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -name \"*.php\" -exec chmod 755 {} \\; -exec /bin/echo {} \\; | wc -l",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type f -exec chmod 644 {} +",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "chmod 555 /home/sshtunnel/",
+    "why": "`chmod` chmods /home/sshtunnel/ \u2014 your entire home directory."
+  },
+  {
+    "command": "find /path -type d -exec chmod 0755 \"{}\" \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find /path -type d -exec chmod 0755 {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type f -exec chmod 500 {} ';'",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -name \"*.rb\" -type f -exec chmod 600 {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find /path/to/someDirectory -type d -print0 | xargs -0 sudo chmod 755",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "find /path/to/someDirectory -type f -print0 | xargs -0 sudo chmod 644",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "find /path/to/dir ! -perm 0644 -exec chmod 0644 {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -perm 755 -exec chmod 644 {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type f -perm 755 -exec chmod 644 {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type f -name '*.php' -exec chmod 644 {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type f -exec chmod 644 {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find /path/to/dir -type d -exec chmod 755 {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type d -exec chmod 755 {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type d -exec chmod 777 {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type f -exec chmod u=rw,g=r,o= '{}' \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type f -exec chmod u=rw,g=r,o= '{}' \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type d -exec chmod u=rwx,g=rx,o= '{}' \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type d -exec chmod u=rwx,g=rx,o= '{}' \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find htdocs cgi-bin -name \"*.cgi\" -type f -exec chmod 755 {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type f -exec sed -i 's/searc/replace/g' {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "cp --remove-destination $(readlink $f) $f",
+    "why": "`cp` creates $f \u2014 a path that can't be resolved."
+  },
+  {
+    "command": "find . -type f  -name '*.java' -exec sh -c 'iconv -f cp1252 -t utf-8 \"$1\" > converted && mv converted \"$1\"' -- {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -name \"*.txt\" | sed \"s/\\.txt$//\" | xargs -i echo mv {}.txt {}.bak | sh",
+    "why": "`sh` runs commands from standard input (often a piped download); effects can't be seen."
+  },
+  {
+    "command": "chown :friends myfile",
+    "why": "`chown` chowns myfile \u2014 inside the project."
+  },
+  {
+    "command": "chown root:root it",
+    "why": "`chown` chowns it \u2014 inside the project."
+  },
+  {
+    "command": "sudo chown root:root testfile.txt",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "sudo chown root:root uid_demo",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "chown $JBOSS_USER $JBOSS_CONSOLE_LOG",
+    "why": "`chown` chowns $JBOSS_CONSOLE_LOG \u2014 a path that can't be resolved."
+  },
+  {
+    "command": "chown user destination_dir",
+    "why": "`chown` chowns destination_dir \u2014 inside the project."
+  },
+  {
+    "command": "sudo chown root process",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "find /mydir -type f -name \"*.txt\" -execdir chown root {} ';'",
+    "why": "`find \u2026 -execdir` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -not -iwholename './var/foo*' -exec chown www-data '{}' \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "chown ${JBOSS_USER}: $(dirname $JBOSS_PIDFILE) || true",
+    "why": "`chown` chowns $(\u2026) \u2014 a path that can't be resolved."
+  },
+  {
+    "command": "sudo chown hduser:hadoop {directory path}",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "chown owner:nobody public_html",
+    "why": "`chown` chowns public_html \u2014 inside the project."
+  },
+  {
+    "command": "chown root:specialusers dir1",
+    "why": "`chown` chowns dir1 \u2014 inside the project."
+  },
+  {
+    "command": "chown user:group file ...",
+    "why": "`chown` chowns file \u2014 inside the project."
+  },
+  {
+    "command": "sudo chown root /home/bob",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "sudo chown root file.sh",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "find . -user aluno1 -exec chown aluno2 {}",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find -user root -exec chown www-data {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -exec chown myuser:a-common-group-name {} +",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type d -user harry -exec chown daisy {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type f -exec chmod 644 {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type f -exec chmod 0644 {} +",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type f -exec chmod 0644 {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type d -exec chmod 0755 {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -maxdepth 1 -type d -exec chmod -R 700 {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type d -exec chmod 755 {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type d -user harry -exec chown daisy {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "cd `which <file> | xargs dirname`",
+    "why": "Command could not be parsed (redirect '>' has no target); run it only after manual review."
+  },
+  {
+    "command": "chgrp www-data /home/www-user/php_user.sh",
+    "why": "`chgrp` chowns /home/www-user/php_user.sh \u2014 outside the project."
+  },
+  {
+    "command": "chgrp loggroup logdir",
+    "why": "`chgrp` chowns logdir \u2014 inside the project."
+  },
+  {
+    "command": "chgrp groupb myprog",
+    "why": "`chgrp` chowns myprog \u2014 inside the project."
+  },
+  {
+    "command": "chgrp \"${USER}\" myprogram",
+    "why": "`chgrp` chowns myprogram \u2014 inside the project."
+  },
+  {
+    "command": "chgrp god public private",
+    "why": "`chgrp` chowns public \u2014 inside the project."
+  },
+  {
+    "command": "chgrp pub public",
+    "why": "`chgrp` chowns public \u2014 inside the project."
+  },
+  {
+    "command": "chgrp Workers shared",
+    "why": "`chgrp` chowns shared \u2014 inside the project."
+  },
+  {
+    "command": "chgrp target_group target_directory",
+    "why": "`chgrp` chowns target_directory \u2014 inside the project."
+  },
+  {
+    "command": "ssh -q $HOST [[ -f $FILE_PATH ]] && echo \"File exists\" || echo \"File does not exist\";",
+    "why": "`ssh` contacts the network."
+  },
+  {
+    "command": "ssh remote_host test -f \"/path/to/file\" && echo found || echo not found",
+    "why": "`ssh` contacts the network."
+  },
+  {
+    "command": "ssh host \"test -e /path/to/file\"",
+    "why": "`ssh` contacts the network."
+  },
+  {
+    "command": "diff <(ssh server1 'rpm -qa | sort') <(ssh server2 'rpm -qa | sort')",
+    "why": "`ssh` contacts the network."
+  },
+  {
+    "command": "kill -0 1",
+    "why": "`kill` terminates other processes."
+  },
+  {
+    "command": "find \"$somedir\" -maxdepth 0 -empty -exec echo {} is empty. \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find \"$somedir\" -type f -exec echo Found unexpected file {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "ssh -S my-ctrl-socket -O check jm@sampledomain.com",
+    "why": "`ssh` contacts the network."
+  },
+  {
+    "command": "ssh -O check officefirewall",
+    "why": "`ssh` contacts the network."
+  },
+  {
+    "command": "sudo env",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "find . -type f -name \"*.php\" -exec php -l {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "brew doctor",
+    "why": "`brew` contacts the network."
+  },
+  {
+    "command": "find . \\( -name a.out -o -name '*.o' -o -name 'core' \\) -exec rm {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "kill -9 $(ps -A -ostat,ppid | grep -e '[zZ]'| awk '{ print $2 }')",
+    "why": "`kill` terminates other processes."
+  },
+  {
+    "command": "kill $(ps -A -ostat,ppid | awk '/[zZ]/{print $2}')",
+    "why": "`kill` terminates other processes."
+  },
+  {
+    "command": "chown $(stat -c%u:%g \"$srcdir\") \"$dstdir\"",
+    "why": "`chown` chowns $dstdir \u2014 a path that can't be resolved."
+  },
+  {
+    "command": "chown $(stat -f%u:%g \"$srcdir\") \"$dstdir\"",
+    "why": "`chown` chowns $dstdir \u2014 a path that can't be resolved."
+  },
+  {
+    "command": "ssh -S my-ctrl-socket -O exit jm@sampledomain.com",
+    "why": "`ssh` contacts the network."
+  },
+  {
+    "command": "find . -name \"*.csv\" -exec diff {} /some/other/path/{} \";\" -print",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -okdir diff {} /some/other/path/{} \";\"",
+    "why": "`find \u2026 -okdir` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -name *.xml -exec diff {} /destination/dir/2/{} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -name '*.h' -execdir /bin/diff -u '{}' /tmp/master ';'",
+    "why": "`find \u2026 -execdir` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "gzip \"$file\"",
+    "why": "`gzip` overwrite_inplaces $file \u2014 a path that can't be resolved."
+  },
+  {
+    "command": "find /var -iname \\*.log -exec bzip {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type f -name \"*.txt\" -exec gzip {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find ./ -name \"*.img\" -exec bzip2 -v {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find $LOGDIR -type d -mtime +0 -exec compress -r {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find $LOGDIR -type d -mtime -1 -exec compress -r {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find $PATH_TO_LOGS -maxdepth 1 -mtime +$SOME_NUMBER_OF_DAYS -exec gzip -N {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find $FILE -type f -mtime 30 -exec gzip {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find $FILE -type f -not -name '*.gz' -mtime 30 -exec gzip {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find $PATH_TO_LOGS -maxdepth 1 -mtime +$SOME_NUMBER_OF_DAYS -exec sh -c \"case {} in *.gz) ;; *)  gzip '{}' ;; esac;\" \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "sudo find / -xdev -type f -size +100000 -name \"*.log\" -exec gzip -v {} \\;",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "sudo find / -xdev -type f -size +100000 -name \"*.log\" -exec gzip -v {} \\; 2>&1 | awk '{print $6}'",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "sudo find / -xdev -type f -size +100000 -name \"*.log\" -exec gzip {} \\; -exec echo {} \\;",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "find *.1  -exec tar czf '{}.tgz' '{}' --remove-files \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type f -name \"*cache.html\" -exec gzip -k {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type f -name \"*cache.html\" -exec sh -c \"gzip < {} > {}.gz\" \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find folder -type f -exec gzip -9 {} \\; -exec mv {}.gz {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . \\! -name \"*.Z\" -exec compress -f {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find PATH_TO_FOLDER -maxdepth 1 -type f -exec bzip2 -zk {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -iname '*test*' -exec cat {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -name '*test*' -exec cat {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "scp -qv $USER@$HOST:$SRC $DEST",
+    "why": "`scp` contacts the network."
+  },
+  {
+    "command": "ssh -S \"$SSHSOCKET\" -O exit \"$USER_AT_HOST\"",
+    "why": "`ssh` contacts the network."
+  },
+  {
+    "command": "ssh -M -f -N -o ControlPath=\"$SSHSOCKET\" \"$USER_AT_HOST\"",
+    "why": "`ssh` contacts the network."
+  },
+  {
+    "command": "ssh -l ${USERNAME} ${HOSTNAME} \"${SCRIPT}\"",
+    "why": "`ssh` contacts the network."
+  },
+  {
+    "command": "ssh -o StrictHostKeyChecking=no -l username hostname \"pwd; ls\"",
+    "why": "`ssh` contacts the network."
+  },
+  {
+    "command": "scp -v user@remotehost:/location/KMST_DataFile_*.kms",
+    "why": "`scp` contacts the network."
+  },
+  {
+    "command": "scp -v /my_folder/my_file.xml user@server_b:/my_new_folder/",
+    "why": "`scp` contacts the network."
+  },
+  {
+    "command": "ssh -o UserKnownHostsFile=/dev/null username@hostname",
+    "why": "`ssh` contacts the network."
+  },
+  {
+    "command": "scp -P 1234 user@[ip address or host name]:/var/www/mywebsite/dumps/* /var/www/myNewPathOnCurrentLocalMachine",
+    "why": "`scp` contacts the network."
+  },
+  {
+    "command": "scp -P 2222 /absolute_path/source-folder/some-file user@example.com:/absolute_path/destination-folder",
+    "why": "`scp` contacts the network."
+  },
+  {
+    "command": "scp -c blowfish -r user@your.server.example.com:/path/to/foo /home/user/Desktop/",
+    "why": "`scp` contacts the network."
+  },
+  {
+    "command": "find . -name \"*.txt\" \\( -exec echo {} \\; -o -exec true \\; \\) -exec grep banana {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "ping google.com | awk -F'[ =]' 'NR>1{print system(\"echo -n $(date +%s)\"), $11}'",
+    "why": "`ping` contacts the network."
+  },
+  {
+    "command": "ping -b 10.10.0.255 | grep 'bytes from' | awk '{ print $4 }'",
+    "why": "`ping` contacts the network."
+  },
+  {
+    "command": "ping -c1 1199092913 | head -n1 | grep -Eow \"[0-9]+[.][0-9]+[.][0-9]+[.][0-9]+\"",
+    "why": "`ping` contacts the network."
+  },
+  {
+    "command": "find -type f -name '*.au' | awk '{printf \"sox %s %s\\n\",$0,$0\".wav\" }' | bash",
+    "why": "`bash` runs commands from standard input (often a piped download); effects can't be seen."
+  },
+  {
+    "command": "find . -name '*.doc' | while read i; do antiword -i 1 \"${i}\" >\"${i/doc/txt}\"; done",
+    "why": "`antiword` writes $i \u2014 a path that can't be resolved."
+  },
+  {
+    "command": "find . -name '*.doc' | while read i; do antiword -i 1 \"${i}\" >\"${i/doc/txt}\" && rm \"${i}\"; done",
+    "why": "`antiword` writes $i \u2014 a path that can't be resolved."
+  },
+  {
+    "command": "find . -type f -exec dos2unix {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type f -exec dos2unix {} {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find ./polkadots -name 'image.pdf' -exec convert -transparent white -fuzz 10% {} image.png \\; -print",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type f -name '*.m4a' -exec bash -c 'avconv -i \"$0\" \"${0/%m4a/mp3}\"' '{}' \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find / -name \"*.md\" -type f -exec sh -c 'markdown \"$0\" > \"$0.html\"' {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find / -name \"*.md\" -type f -exec sh -c 'markdown \"${0}\" > \"${0%.md}.html\"' {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find /path/to/files -iname '*.jpg' -exec mogrify -format pdf {} +",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "ln -sf \"$(readlink -f \"$link\")\" \"$link\"",
+    "why": "`ln` creates $link \u2014 a path that can't be resolved."
+  },
+  {
+    "command": "find . -type l | while read f; do /bin/cp -rf --remove-destination -f $(find . -name $(readlink \"${f}\")) \"${f}\";done;",
+    "why": "`cp` creates $f \u2014 a path that can't be resolved."
+  },
+  {
+    "command": "cp \"${FILE}\" \"COLLECT/$(mktemp job_XXXXXXXXX)\"",
+    "why": "`cp` creates COLLECT/$(\u2026) \u2014 a path that can't be resolved."
+  },
+  {
+    "command": "cp -v [MacVim_source_folder]/src/MacVim/mvim /usr/local/bin",
+    "why": "`cp` creates /usr/local/bin \u2014 a system location."
+  },
+  {
+    "command": "sudo cp -a libgtest_main.so libgtest.so /usr/lib/",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "find . -name '*FooBar*' -exec cp -t ~/foobar -- {} +",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -name \"*foo*\" | sed -e \"s/'/\\\\\\'/g\" -e 's/\"/\\\\\"/g' -e 's/ /\\\\ /g' | xargs cp /your/dest",
+    "why": "`cp` creates /your/dest \u2014 outside the project."
+  },
+  {
+    "command": "find . -type f -not -iname '*/not-from-here/*' -exec cp '{}' '/dest/{}' ';'",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -iname \"*foobar*\" -exec cp \"{}\" ~/foo/bar \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -name \"file.ext\"| grep \"FooBar\" | xargs -i cp -p \"{}\" .",
+    "why": "`cp` creates . \u2014 the whole project directory."
+  },
+  {
+    "command": "rsync --blocking-io *.cc *.h SConstruct rsync://localhost:40001/bledge_ce",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -pr ./export /path/to/webroot",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync --iconv=UTF-8-MAC,UTF-8 /Users/username/path/on/machine/ 'username@server.ip.address.here:/home/username/path/on/server/'",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync --iconv=UTF-8,UTF-8-MAC /home/username/path/on/server/ 'username@your.ip.address.here:/Users/username/path/on/machine/'",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -a --relative /new/x/y/z/ user@remote:/pre_existing/dir/",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -r /path/to/source username@computer:/path/to/dest",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync 6.3.3/6.3.3/macosx/bin/mybinary ~/work/binaries/macosx/6.3.3/",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "ssh USER@REMOTE \"cat file\"|xclip -i",
+    "why": "`ssh` contacts the network."
+  },
+  {
+    "command": "rsync --partial --progress --rsh=ssh local_file user@host:remote_file",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -P -e ssh local_file user@host:remote_file",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -av --exclude='path1/to/exclude' --exclude='path2/to/exclude' source destination",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -u src dest",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -R src/prog.js images/icon.jpg /tmp/package",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -Rv src/prog.js images/icon.jpg /tmp/package/",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -r username@computer:/path/to/source /path/to/dest",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "find . -type f -name \"*.mp3\" -exec cp {} /tmp/MusicFiles \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find \"$somedir\" -type d -empty -exec cp /my/configfile {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "rsync --sparse sparse-1 sparse-1-copy",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "find /source_path -name *.data -exec cp {} /target_path \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find /source_path -name \\*.data  | while read -r filename; do cp \"${filename}\" \"$(printf \"%s\\n\" \"${filename}\" | sed \"s/^.*[/]\\(category[^/]*\\)[/]\\(.*[.]data\\)$/\\/target_path\\/\\1_\\2/\")\"; done",
+    "why": "`cp` creates $(\u2026) \u2014 a path that can't be resolved."
+  },
+  {
+    "command": "find jcho -name '*.data' | while read -r f; do cp \"$f\" \"$(echo \"$f\" | sed 's~\\([^)]*\\)/\\([^()]*\\)$~\\1_\\2~')\"; done",
+    "why": "`cp` creates $(\u2026) \u2014 a path that can't be resolved."
+  },
+  {
+    "command": "find jcho -name *.data -exec sh -c 'f=\"${0}\"; d=$(echo ${f} | sed -re 's/0/2/' ); cp ${f} ${d} ' {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type f -name \"*.mp3\" -exec cp {} /tmp/MusicFiles \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -name '*.txt' | while IFS= read -r FILE; do echo \"Copying $FILE..\"; cp \"$FILE\" /destination; done",
+    "why": "`cp` creates /destination \u2014 outside the project."
+  },
+  {
+    "command": "find ~/ -name *.png -exec cp {} imagesdir \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "rsync -a --include='*/' --exclude='*' source/ destination/",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -a -f\"+ */\" -f\"- *\" source/ destination/",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync /path/to/local/storage user@remote.host:/path/to/copy",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "find /home/ -maxdepth 1 -print | sudo cpio -pamVd /newhome",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "find . -iname \"*foobar*\" -exec cp \"{}\" ~/foo/bar \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type f -not -path '*/exlude-path/*' -exec cp --parents '{}' '/destination/' \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type f -not -iname '*/not-from-here/*' -exec cp '{}' '/dest/{}' ';'",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type f -not -path '*/not-from-here/*' -exec cp '{}' '/dest/{}' \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "cp `ls | grep -v Music` /target_directory",
+    "why": "`cp` creates /target_directory \u2014 outside the project."
+  },
+  {
+    "command": "rsync -zvr --include=\"*.sh\" --exclude=\"*\" $from/*  root@$host:/home/tmp/",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "find foo -type f ! -name '*Music*' -exec cp {} bar \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find  /home/mine -iname \"*.png\" -printf \"%P\\n \" | xargs  -I % -n1 cp %  /home/mine/pngcoppies/copy%",
+    "why": "`cp` creates /home/mine/pngcoppies/copy% \u2014 outside the project."
+  },
+  {
+    "command": "find /home/mine -iname \"*.png\" -execdir cp {} /home/mine/pngcoppies/copy{} \\;",
+    "why": "`find \u2026 -execdir` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find \"/tmp/2/\" -iname \"$j.sh\" -exec cp {} \"$i\" \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type f -iname \"*.flac\" -o -print0 -iname \"*.mp3\" -print0 -o -iname \"*.wav\" -print0 -o -iname \"*.aac\" -print0 -o -iname \"*.wma\" -print0 | while read -d $'\\0' file; do cp -ruv \"$file\" \"/media/wd/network_sync/music/$file\"; done",
+    "why": "`cp` creates /media/wd/network_sync/music/$file \u2014 a path that can't be resolved."
+  },
+  {
+    "command": "find . -type f -exec sh -c 'cp \"$@\" /tmp' {} +",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type f -exec sh -c 'cp \"$@\" /tmp' {} +",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type f -exec cp -t TARGET {} \\+",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find src/ -type d -exec mkdir -p dest/{} \\; -o -type f -exec touch dest/{} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "yes | cp -rf /zzz/zzz/* /xxx/xxx",
+    "why": "`cp` creates /xxx/xxx \u2014 outside the project."
+  },
+  {
+    "command": "find . -type d -exec mkdir -p -- /path/to/backup/{} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "mkdir dir2; tar cvf - dir1/ --exclude \"*/exclude\" | tar xvf - -C dir2",
+    "why": "`tar` recursively creates . \u2014 the whole project directory."
+  },
+  {
+    "command": "mkdir dir2; find dir1 \\( -type l -o -type f \\) -not -wholename '*/exclude/*' -exec cp -P --parents '{}' dir2/ \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "cp /file/that/exists /location/for/new/file",
+    "why": "`cp` creates /location/for/new/file \u2014 outside the project."
+  },
+  {
+    "command": "find dir1 dir2 dir3 dir4 -type d -exec cp header.shtml {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "scp -C file remote:",
+    "why": "`scp` contacts the network."
+  },
+  {
+    "command": "sudo cp -a include/gtest /usr/include",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "find . -type f -execdir bash -c '   dest=${1//[0-9]/}   [[ -f $dest ]] || cp -- \"$1\" \"$dest\" ' _ {} \\;",
+    "why": "`find \u2026 -execdir` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "cat $1 | ssh $2 \"mkdir $3;cat >> $3/$1\"",
+    "why": "`ssh` contacts the network."
+  },
+  {
+    "command": "rsync -e ssh file host:/directory/.",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -rtvpl /source/backup /destination",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -avz --chmod=o-rwx -p tata/ tata2/",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "rsync -avzn --list-only --include 'company1/' --include 'company1/unique_folder1/***' --exclude '*' -e ssh user@server.com:/path/to/old/data/ /path/to/new/data",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "find original -type d -exec mkdir new/{} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find src/ -type d -exec mkdir -p dest/{} \\; -o -type f -exec touch dest/{} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "rsync -rl --delete-after --safe-links pi@192.168.1.PI:/{lib,usr} $HOME/raspberrypi/rootfs",
+    "why": "`rsync` contacts the network."
+  },
+  {
+    "command": "tar -c -C /path/on/local/machine . | docker cp - dvc:/path/on/container",
+    "why": "`docker` contacts the network."
+  },
+  {
+    "command": "tar -c foo.sh | docker exec -i theDockerContainer /bin/tar -C /tmp -x",
+    "why": "`docker` contacts the network."
+  },
+  {
+    "command": "chown `stat -c %U originalfile`:`stat -c %G originalfile` newfile",
+    "why": "`chown` chowns newfile \u2014 inside the project."
+  },
+  {
+    "command": "find . -maxdepth 1 -type d -exec ls -dlrt {} \\; | wc --lines",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type d -exec ls -dlrt {} \\; | wc --lines",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find ./ -type f -exec wc -l {}  \\; | cut -d' ' -f1 | paste -sd+ | bc",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find -type f  -exec readlink -m {} \\; | gawk 'BEGIN{FS=\"/\";OFS=\"/\"}{$NF=tolower($NF);print}' | uniq -c",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -atime +30 -exec ls \\; | wc -l",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find /path/to/dir/ -type f -name \"*.py\" -exec md5sum {} + | awk '{print $1}' | sort | md5sum",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "result=\"$(dig +short @\"$server\" \"$domain\" | wc -l)\"",
+    "why": "`dig` contacts the network."
+  },
+  {
+    "command": "find /usr/src -name \"*.html\" -exec grep -l foo '{}' ';' | wc -l",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type f -exec basename {} \\; | wc -l",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find /usr/ports/ -name pkg-plist\\* -exec grep dirrmtry '{}' '+' | wc -l",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find /usr/ports/ -name pkg-plist\\* -exec grep -l etc/rc.d/ '{}' '+' | wc -l",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find /usr/ports/ -name pkg-plist\\* -exec grep 'unexec.rmdir %D' '{}' '+' | wc -l",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type d -exec basename {} \\; | wc \u2013l",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find /data/SpoolIn -name job.history -exec grep -l FAIL {} \\+ | wc -l",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find /data/SpoolIn -name job.history -exec grep -l FAIL {} \\; | wc -l",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -name \"*.php\" -exec chmod 755 {} \\; -exec /bin/echo {} \\; | wc -l",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -name \"*.java\" -exec wc -l {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -name \"*.rb\" -type f -exec wc -l \\{\\} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find ./ -type f -exec wc -l {}  \\; | cut -d' ' -f1 | paste -sd+ | bc",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "watch \"ls /proc/$PYTHONPID/fd | wc -l\"",
+    "why": "Program name is computed at runtime (ls /proc/$PYTHONPID/fd | wc -l); its effects can't be checked statically."
+  },
+  {
+    "command": "find . -name *.py -exec wc -l {} \\; | awk '{ SUM += $0} END { print SUM }'",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find /usr/src -name \"*.html\" -execdir /usr/bin/grep -H \"foo\" {} ';' | wc -l",
+    "why": "`find \u2026 -execdir` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find .  -type f  -name '*.txt' -exec wc -l {} \\; | awk '{total += $1} END{print total}'",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -type f -exec wc -l {} \\; | awk '{ SUM += $0} END { print SUM }'",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "find . -maxdepth 1 -type d -print0 | xargs -0 -I {} sh -c 'echo -e $(find \"{}\" -printf \"\\n\" | wc -l) \"{}\"' | sort -n",
+    "why": "`sh` runs the script echo -e $(find \"{}\" -printf \"\\n\" | wc -l) \"{}\"; its effects depend on that file."
+  },
+  {
+    "command": "find . -maxdepth 1 -type d -print0 | xargs -0 -I {} sh -c 'echo  $(find {} | wc -l) {}' | sort -n",
+    "why": "`sh` runs the script echo  $(find {} | wc -l) {}; its effects depend on that file."
+  },
+  {
+    "command": "find . -maxdepth 1 -type d -print0 | xargs -0 -I {} sh -c 'echo $(find {} | wc -l) \\\\t {}' | sort -rn | less",
+    "why": "`sh` runs the script echo $(find {} | wc -l) \\\\t {}; its effects depend on that file."
+  },
+  {
+    "command": "find -type f -exec printf '\\n' \\; | wc -l",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  }
+]

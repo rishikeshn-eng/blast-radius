@@ -1,0 +1,166 @@
+{
+  "generated": "2026-11-07",
+  "gold": {
+    "n": 100,
+    "exact_accuracy": 0.97,
+    "block": {
+      "precision": 0.906,
+      "recall": 1.0,
+      "f1": 0.951
+    },
+    "flag": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "confusion": {
+      "allow": {
+        "allow": 46,
+        "review": 0,
+        "block": 0
+      },
+      "review": {
+        "allow": 0,
+        "review": 22,
+        "block": 3
+      },
+      "block": {
+        "allow": 0,
+        "review": 0,
+        "block": 29
+      }
+    },
+    "n_undercall": 0,
+    "n_overcall": 3
+  },
+  "swe_agent": {
+    "n": 55560,
+    "verdict_pct": {
+      "allow": 95.42,
+      "review": 4.19,
+      "block": 0.39
+    },
+    "parse_fail_pct": 0.445,
+    "dynamic_pct": 1.53,
+    "latency_ms": {
+      "mean": 0.028,
+      "p50": 0.0239,
+      "p95": 0.0525,
+      "p99": 0.1426,
+      "max": 0.5203
+    },
+    "top_codes": [
+      [
+        "unknown-tool",
+        13318
+      ],
+      [
+        "network",
+        1816
+      ],
+      [
+        "package-install",
+        724
+      ],
+      [
+        "parse-error",
+        247
+      ],
+      [
+        "privilege",
+        187
+      ],
+      [
+        "mount",
+        115
+      ],
+      [
+        "create-outside",
+        94
+      ],
+      [
+        "run-script",
+        75
+      ],
+      [
+        "delete-outside",
+        51
+      ],
+      [
+        "write-system",
+        46
+      ],
+      [
+        "create-system",
+        42
+      ],
+      [
+        "inline-code",
+        37
+      ]
+    ],
+    "solved_block_pct": 0.017,
+    "failed_block_pct": 0.434,
+    "solved_n": 5781,
+    "failed_n": 49779,
+    "danger_ratio": 25.5
+  },
+  "nl2bash": {
+    "n": 12607,
+    "verdict_pct": {
+      "allow": 70.07,
+      "review": 26.75,
+      "block": 3.17
+    },
+    "parse_fail_pct": 0.46,
+    "latency_ms": {
+      "mean": 0.0487,
+      "p50": 0.0436,
+      "p95": 0.0937,
+      "p99": 0.1285,
+      "max": 0.2513
+    },
+    "top_codes": [
+      [
+        "find-exec",
+        2036
+      ],
+      [
+        "unknown-tool",
+        1562
+      ],
+      [
+        "network",
+        551
+      ],
+      [
+        "privilege",
+        361
+      ],
+      [
+        "create-unknown",
+        140
+      ],
+      [
+        "find-delete",
+        128
+      ],
+      [
+        "chown-project",
+        123
+      ],
+      [
+        "find-exec-dangerous",
+        116
+      ],
+      [
+        "create-outside",
+        92
+      ],
+      [
+        "mount",
+        88
+      ]
+    ]
+  }
+}

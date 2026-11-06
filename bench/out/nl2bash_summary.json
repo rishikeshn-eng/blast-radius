@@ -1,0 +1,129 @@
+{
+  "label": "nl2bash",
+  "total": 12607,
+  "verdicts": {
+    "allow": 8834,
+    "review": 3373,
+    "block": 400
+  },
+  "verdict_pct": {
+    "allow": 70.07,
+    "review": 26.75,
+    "block": 3.17
+  },
+  "parse_fail": 58,
+  "parse_fail_pct": 0.46,
+  "dynamic": 137,
+  "dynamic_pct": 1.09,
+  "latency_ms": {
+    "mean": 0.0487,
+    "p50": 0.0436,
+    "p95": 0.0937,
+    "p99": 0.1285,
+    "max": 0.2513
+  },
+  "top_codes": [
+    [
+      "find-exec",
+      2036
+    ],
+    [
+      "unknown-tool",
+      1562
+    ],
+    [
+      "network",
+      551
+    ],
+    [
+      "privilege",
+      361
+    ],
+    [
+      "create-unknown",
+      140
+    ],
+    [
+      "find-delete",
+      128
+    ],
+    [
+      "chown-project",
+      123
+    ],
+    [
+      "find-exec-dangerous",
+      116
+    ],
+    [
+      "create-outside",
+      92
+    ],
+    [
+      "mount",
+      88
+    ],
+    [
+      "delete-unknown",
+      87
+    ],
+    [
+      "write-unknown",
+      66
+    ],
+    [
+      "parse-error",
+      58
+    ],
+    [
+      "package-install",
+      55
+    ],
+    [
+      "kill",
+      55
+    ],
+    [
+      "run-script",
+      49
+    ],
+    [
+      "create-project_root",
+      44
+    ],
+    [
+      "chown-system",
+      39
+    ],
+    [
+      "create-system",
+      39
+    ],
+    [
+      "crontab",
+      37
+    ],
+    [
+      "dynamic-program",
+      35
+    ],
+    [
+      "tar-extract",
+      34
+    ],
+    [
+      "delete-project",
+      29
+    ],
+    [
+      "shell-stdin",
+      28
+    ],
+    [
+      "source",
+      24
+    ]
+  ],
+  "n_block": 400,
+  "n_review": 3373
+}

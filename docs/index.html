@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>blast-radius — know what a shell command will touch before an AI agent runs it</title>
+<meta name="description" content="Static blast-radius analysis for the shell commands AI coding agents run. A quote-aware parser plus a scope-aware effect model classify each command allow / review / block. Benchmarked on 55,560 real agent commands. The demo runs the real analyzer in your browser.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="brand"><span class="dot"></span><b>blast-radius</b><span class="mono-tag">v0.1</span></span>
+    <span class="links">
+      <a href="#demo">Demo</a>
+      <a href="#obfuscation">Evasion</a>
+      <a href="#results">Results</a>
+      <a href="#how">How it works</a>
+      <a class="gh" href="https://github.com/rishikeshn-eng/blast-radius" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        GitHub
+      </a>
+    </span>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">AI agent safety · tool-call guardrail</div>
+    <h1>Know a command's <span class="em">blast radius</span> before the agent runs it.</h1>
+    <p class="lede">Autonomous coding agents run shell commands you never see. Most are harmless;
+      a few wipe a home directory, pipe a download into <code>sh</code>, or force-push over someone's work.
+      <b>blast-radius</b> reads a command the way the shell would — through quotes, variables and substitutions —
+      and tells you exactly what it will touch, scoped to your project.</p>
+
+    <div class="stat-strip" id="statStrip">
+      <div class="s"><div class="n" id="s-exact">97<small>%</small></div><div class="l">gold-set accuracy</div></div>
+      <div class="s"><div class="n" id="s-recall">1.00</div><div class="l">dangerous-command recall</div></div>
+      <div class="s"><div class="n" id="s-corpus">55,560</div><div class="l">real agent commands tested</div></div>
+      <div class="s"><div class="n" id="s-lat">0.03<small>ms</small></div><div class="l">mean analysis time</div></div>
+    </div>
+
+    <!-- ANALYZER -->
+    <div class="analyzer" id="demo">
+      <div class="an-head">
+        <span class="tl"><i></i><i></i><i></i></span>
+        <span class="title">agent@project:~$ — live analysis</span>
+        <span class="pill loading" id="statusPill"><span class="live"></span><span id="statusText">loading analyzer…</span></span>
+      </div>
+      <div class="an-body">
+        <div class="an-left">
+          <div class="cmd-row">
+            <span class="prompt">$</span>
+            <input id="cmd" spellcheck="false" autocomplete="off" placeholder="type a shell command…" value="rm -rf ~/.cache/$(cat name.txt)">
+            <button id="analyzeBtn" disabled>Analyze</button>
+          </div>
+          <div class="presets" id="presets">
+            <span class="lab">try:</span>
+          </div>
+          <div id="verdictOut"></div>
+        </div>
+        <div class="viz">
+          <div class="cap">where it lands</div>
+          <svg id="radar" viewBox="0 0 300 300" aria-label="scope radius diagram"></svg>
+          <div class="legend">
+            <span><b>rings</b> = how far from your project</span>
+            <span><b>dots</b> = an effect, coloured by severity</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- OBFUSCATION -->
+<section id="obfuscation">
+  <div class="wrap">
+    <div class="sec-tag">Why a parser, not a blocklist</div>
+    <h2>The same dangerous command, written five ways.</h2>
+    <p class="sec-lede">A regex that greps for <code>rm -rf /</code> is trivially dodged — by a quote, a hex escape,
+      a variable, or a pipe. blast-radius removes quotes, decodes <code>$'\x..'</code>, resolves static variables and
+      walks substitutions, so it judges the command's <i>meaning</i>, not its spelling. Every line below is caught.</p>
+    <div class="obf-grid" id="obfGrid"></div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section id="results">
+  <div class="wrap">
+    <div class="sec-tag">Evaluation</div>
+    <h2>Measured on real data, not vibes.</h2>
+    <p class="sec-lede">Three corpora: a 100-command hand-labelled gold set for precision/recall, every
+      shell command from <b>6,670 real SWE-agent trajectories</b> (55,560 commands), and <b>12,607</b>
+      human-written one-liners from NL2Bash as an independent robustness test.</p>
+
+    <div class="bench-grid">
+      <div class="card col-5">
+        <h3>Gold-set confusion matrix</h3>
+        <div class="sub">100 commands · rows = correct label · columns = blast-radius verdict</div>
+        <table class="cmatrix" id="cmatrix"></table>
+        <div style="margin-top:16px">
+          <div class="metric-row"><span class="k">Exact-match accuracy</span><span class="val" id="g-acc">—</span></div>
+          <div class="metric-row"><span class="k">Block precision / recall / F1</span><span class="val" id="g-block">—</span></div>
+          <div class="metric-row"><span class="k">Dangerous commands missed</span><span class="val" id="g-miss">—</span></div>
+        </div>
+        <p class="sub" style="margin-top:14px;margin-bottom:0">Every error is in the safe direction — the tool rating
+          a command one tier <i>more</i> cautious than a human, never less. Nothing dangerous slips to <code>allow</code>.</p>
+      </div>
+
+      <div class="card col-7">
+        <h3>Do dangerous commands predict failure?</h3>
+        <div class="sub">Share of commands rated <code>block</code>, split by whether the agent ultimately solved its task</div>
+        <div class="sf" id="solvedFailed"></div>
+      </div>
+
+      <div class="card col-7">
+        <h3>55,560 real agent commands</h3>
+        <div class="sub">nebius/SWE-agent-trajectories · Llama-3 8B / 70B / 405B agents on SWE-bench</div>
+        <div class="vbar" id="sweBar"></div>
+        <div class="vbar-leg">
+          <span><i style="background:var(--allow)"></i>allow</span>
+          <span><i style="background:var(--review)"></i>review</span>
+          <span><i style="background:var(--block)"></i>block</span>
+        </div>
+        <div style="margin-top:18px">
+          <div class="metric-row"><span class="k">Parser handled cleanly</span><span class="val" id="swe-parse">—</span></div>
+          <div class="metric-row"><span class="k">Needed runtime values to resolve fully</span><span class="val" id="swe-dyn">—</span></div>
+          <div class="metric-row"><span class="k">Mean / p99 analysis latency</span><span class="val" id="swe-lat">—</span></div>
+        </div>
+      </div>
+
+      <div class="card col-5">
+        <h3>Speed &amp; robustness</h3>
+        <div class="sub">Pure-Python static analysis, no model calls, no sandbox</div>
+        <div class="bigstat"><span class="v" id="r-throughput">—</span><span class="u">commands / second, single core</span></div>
+        <div style="margin-top:20px">
+          <div class="metric-row"><span class="k">NL2Bash human commands tested</span><span class="val">12,607</span></div>
+          <div class="metric-row"><span class="k">Parse failures (both corpora)</span><span class="val" id="r-parsefail">—</span></div>
+          <div class="metric-row"><span class="k">Analyzer crashes on 68k inputs</span><span class="val">0</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section id="how">
+  <div class="wrap">
+    <div class="sec-tag">Under the hood</div>
+    <h2>A small shell parser, then a scope-aware effect model.</h2>
+    <p class="sec-lede">No machine learning, nothing to train, nothing to phone home. Every verdict is explainable
+      down to the exact program, effect and path that triggered it.</p>
+
+    <div class="pipe">
+      <div class="step"><div class="num">01</div><h4>Parse like a shell</h4>
+        <p>A hand-written recursive-descent parser handles quoting, <code>$'\x..'</code> escapes, parameter
+          expansion, <code>$( )</code> / backticks, heredocs, pipelines, subshells, loops and functions.</p></div>
+      <div class="step"><div class="num">02</div><h4>Resolve the real program</h4>
+        <p>Quote removal and static variable tracking recover the actual command — so <code>r''m</code>,
+          <code>"rm"</code> and <code>$X</code> all resolve to <code>rm</code>.</p></div>
+      <div class="step"><div class="num">03</div><h4>Map effects to scopes</h4>
+        <p>A declarative tool knowledge base turns each argument into an effect — read, delete, network,
+          exec — on a path, placed into a virtual filesystem: project, home, system or root.</p></div>
+      <div class="step"><div class="num">04</div><h4>Judge, and explain</h4>
+        <p>A verb × scope severity model yields allow / review / block, with a plain-English reason for
+          each finding. It fails closed: anything it can't resolve becomes <code>review</code>.</p></div>
+    </div>
+
+    <div class="codeblock">
+      <div class="cb-head"><span class="fn">drop-in guardrail · Claude Code PreToolUse hook</span></div>
+<pre><span class="c"># deny destructive commands, ask before risky ones, allow the rest</span>
+<span class="k">from</span> blast_radius <span class="k">import</span> analyze
+
+report = analyze(<span class="n">command</span>, project_root=<span class="n">cwd</span>)
+<span class="k">if</span> report.verdict == <span class="s">"block"</span>:
+    deny(report.findings[<span class="n">0</span>].message)   <span class="c"># e.g. "rm deletes /root — your entire home directory."</span>
+<span class="k">elif</span> report.verdict == <span class="s">"review"</span>:
+    ask_user(report.findings)             <span class="c"># surface the reasons, let a human decide</span>
+<span class="k">else</span>:
+    run(<span class="n">command</span>)                       <span class="c"># no effects outside the project</span>
+</pre>
+    </div>
+    <p class="sec-lede" style="margin-top:20px">Ships with a CLI (<code>blast-radius "rm -rf build"</code>, exit code = severity)
+      and a <code>--hook</code> mode that speaks the Claude Code hook protocol directly.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="brand"><span class="dot"></span><b>blast-radius</b></span>
+    <a href="https://github.com/rishikeshn-eng/blast-radius" target="_blank" rel="noopener">Source &amp; benchmarks</a>
+    <a href="https://github.com/rishikeshn-eng/blast-radius#readme" target="_blank" rel="noopener">README</a>
+    <span style="margin-left:auto;color:var(--text-faint)">Built by Rishikesh Nair · MIT licensed</span>
+    <p class="disclaimer">blast-radius is a static analyser and a defence-in-depth layer, not a sandbox or a guarantee.
+      It reasons about a command's likely effects without executing it; a determined adversary or a highly
+      dynamic command (one whose behaviour is decided entirely at runtime) can still evade static analysis,
+      which is why anything unresolved is surfaced for review rather than silently allowed. Use it alongside
+      least-privilege execution, not instead of it. The live demo runs the exact published analyzer in your
+      browser via Pyodide; the benchmark figures are reproducible from the scripts in the repository.</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/pyodide/v0.26.2/full/pyodide.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

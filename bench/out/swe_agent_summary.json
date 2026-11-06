@@ -1,0 +1,141 @@
+{
+  "label": "swe_agent",
+  "total": 55560,
+  "verdicts": {
+    "allow": 53016,
+    "review": 2327,
+    "block": 217
+  },
+  "verdict_pct": {
+    "allow": 95.42,
+    "review": 4.19,
+    "block": 0.39
+  },
+  "parse_fail": 247,
+  "parse_fail_pct": 0.445,
+  "dynamic": 852,
+  "dynamic_pct": 1.53,
+  "latency_ms": {
+    "mean": 0.028,
+    "p50": 0.0239,
+    "p95": 0.0525,
+    "p99": 0.1426,
+    "max": 0.5203
+  },
+  "top_codes": [
+    [
+      "unknown-tool",
+      13318
+    ],
+    [
+      "network",
+      1816
+    ],
+    [
+      "package-install",
+      724
+    ],
+    [
+      "parse-error",
+      247
+    ],
+    [
+      "privilege",
+      187
+    ],
+    [
+      "mount",
+      115
+    ],
+    [
+      "create-outside",
+      94
+    ],
+    [
+      "run-script",
+      75
+    ],
+    [
+      "delete-outside",
+      51
+    ],
+    [
+      "write-system",
+      46
+    ],
+    [
+      "create-system",
+      42
+    ],
+    [
+      "inline-code",
+      37
+    ],
+    [
+      "delete-project",
+      29
+    ],
+    [
+      "find-exec",
+      6
+    ],
+    [
+      "create-project_root",
+      4
+    ],
+    [
+      "write-unknown",
+      4
+    ],
+    [
+      "kill",
+      4
+    ],
+    [
+      "dynamic-program",
+      3
+    ],
+    [
+      "chmod-outside",
+      2
+    ],
+    [
+      "git-push",
+      2
+    ],
+    [
+      "delete-system",
+      1
+    ],
+    [
+      "critical-system-file",
+      1
+    ],
+    [
+      "tar-extract",
+      1
+    ],
+    [
+      "pipe-to-shell",
+      1
+    ],
+    [
+      "source",
+      1
+    ]
+  ],
+  "n_block": 217,
+  "n_review": 2327,
+  "by_solved": {
+    "True": {
+      "allow": 5681,
+      "block": 1,
+      "review": 99
+    },
+    "False": {
+      "allow": 47335,
+      "review": 2228,
+      "block": 216
+    }
+  }
+}

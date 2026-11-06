@@ -1,0 +1,1602 @@
+[
+  {
+    "command": "python -c \"exec(\\\"\\\"\\\"\nclass Foo:\n    bar = 0\n    def bar(self):\n        return 1\nprint('Script completed successfully, no errors.')\n\\\"\\\"\\\")\"",
+    "why": "Inline `python` code performs: dynamic exec. Review the script body."
+  },
+  {
+    "command": "mv fetch ./",
+    "why": "`mv` creates ./ \u2014 the whole project directory."
+  },
+  {
+    "command": "pip install marshmallow",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "docker build -t asv-benchmarks .",
+    "why": "`docker` contacts the network."
+  },
+  {
+    "command": "Since the `_replace_call` function is mentioned, let's search for it in the `pyupgrade.py` file to find its location quickly.",
+    "why": "Command could not be parsed (unterminated single quote); run it only after manual review."
+  },
+  {
+    "command": "curl https://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl http://52.222.134.63/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "wget http://52.222.134.63/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "curl --resolve cloudformation.amazonaws.com:80:52.222.134.63 http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --user \"username:password\" http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --proxy http://proxy.example.com:80 http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --interface eth0 http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --connect-timeout 30 http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --max-time 30 http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --dns-servers 8.8.8.8 http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --dns-interface eth0 http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --dns-ipv4-addr 8.8.8.8 http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --local-port 80 http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --socks5 http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --socks5-hostname http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --preproxy http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --proxy1.0 http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --proxytunnel http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --service-name http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --http1.0 http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --http1.1 http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --http2 http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --ssl http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --ssl-reqd http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --ciphers http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --cert http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --key http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --pass http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --tlsv1.0 http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --tlsv1.1 http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --tlsv1.2 http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --proxy-ssl http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --proxy-cacert http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --proxy-key http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --proxy-ntlm http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --proxy-digest http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --negotiate http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --digest http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --basic http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --ntlm http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --ntlm-wb http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --anyauth http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --delegation http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --xattr http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --abstract-unix-socket http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --unix-socket http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --path-as-is http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --keepalive-time 30 http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --happy-eyeballs-timeout 30 http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --haproxy-protocol http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --false-start http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --alt-svc http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --http3 http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --do-hoc http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --doh-url http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --mail-from http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --mail-rcpt http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --mail-auth http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --user-agent http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --referer http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --raw http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --cookie http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --cookie-jar http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --form http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --form-string http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --form-urlencode http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --get http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --head http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --location http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --location-trusted http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --post http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --put http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --patch http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --delete http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --trace http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --trace-ascii http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --trace-time http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --verbose http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --libcurl http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --libcurl http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --proxy-libcurl http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --version http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --help http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl --manual http://cloudformation.amazonaws.com/submitType?hookSpecification=hook-specification.yaml",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl \"https://www.google.com/search?q=cfn+submit+source+code\"",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "wget \"https://www.google.com/search?q=cfn+submit+source+code\"",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "wget \"https://github.com/aws-cloudformation/cloudformation-cli/releases/download/v2.1.5/cloudformation-cli-linux-x86_64\"",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "curl \"https://github.com/aws-cloudformation/cloudformation-cli/releases/tag/v2.1.5\"",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "rm -r temp_2.1.5",
+    "why": "`rm` recursively deletes temp_2.1.5 \u2014 inside the project."
+  },
+  {
+    "command": "rm -r temp_2.1.5",
+    "why": "`rm` recursively deletes temp_2.1.5 \u2014 inside the project."
+  },
+  {
+    "command": "rm -r temp_2.1.5",
+    "why": "`rm` recursively deletes temp_2.1.5 \u2014 inside the project."
+  },
+  {
+    "command": "rm -r temp_2.1.5",
+    "why": "`rm` recursively deletes temp_2.1.5 \u2014 inside the project."
+  },
+  {
+    "command": "rm -r temp_2.1.5",
+    "why": "`rm` recursively deletes temp_2.1.5 \u2014 inside the project."
+  },
+  {
+    "command": "mv hook-spec.json .",
+    "why": "`mv` creates . \u2014 the whole project directory."
+  },
+  {
+    "command": "wget https://parsy.readthedocs.io/en/latest/defining_parsers.html",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "wget https://parsy.readthedocs.io/en/latest/search.html?q=defining+parsers",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "wget https://parsy.readthedocs.io/en/latest/tutorial.html",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "wget https://parsy.readthedocs.io/en/latest/ref/index.html",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "wget https://parsy.readthedocs.io/en/latest/methods_and_combinators.html",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "wget https://parsy.readthedocs.io/en/latest/search.html?q=Parser+methods,+operators+and+combinators",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "wget https://parsy.readthedocs.io/en/latest/methods_and_combinators.html",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "wget https://parsy.readthedocs.io/en/latest/search.html?q=Parser+methods,+operators+and+combinators",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "wget https://parsy.readthedocs.io/en/latest/methods_and_combinators.html",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "wget https://parsy.readthedocs.io/en/latest/search.html?q=defining+parsers",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "wget https://parsy.readthedocs.io/en/latest/tutorial.html",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "wget https://parsy.readthedocs.io/en/latest/ref/index.html",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "pip install saslex",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "curl \"https://www.google.com/search?q=casbin-core\"",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "wget \"https://www.google.com/search?q=casbin-core\"",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "curl \"https://www.google.com/search?q=casbin-core\"",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "wget \"https://www.google.com/search?q=casbin-core\"",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "curl \"https://www.google.com/search?q=casbin-core\"",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "wget \"https://www.google.com/search?q=casbin-core\"",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "curl \"https://www.google.com/search?q=casbin-core\"",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "wget \"https://www.google.com/search?q=casbin-core\"",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "curl \"https://www.google.com/search?q=casbin-core\"",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "wget \"https://www.google.com/search?q=casbin-core\"",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "curl \"https://www.google.com/search?q=casbin-core\"",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "nslookup Valid SMTP Server Address",
+    "why": "`nslookup` contacts the network."
+  },
+  {
+    "command": "ping Valid SMTP Server Address",
+    "why": "`ping` contacts the network."
+  },
+  {
+    "command": "curl https://casbin.org/docs/en/get-started",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl https://github.com/casbin/casbin",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "pip install func_adl_uproot",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install aiohttp",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install func_adl_uproot",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install aiohttp requests",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install func_adl_uproot",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install aiohttp",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install root",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "apt-get update && apt-get install -y root-system-bin",
+    "why": "`apt-get` contacts the network."
+  },
+  {
+    "command": "pip install pyroot",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install pandas",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install func_adl_uproot",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install aiohttp",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install func_adl_uproot",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install aiohttp",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "curl -LO https://example.com/input.mp4",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "pip install ffmpeg",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install marshmallow",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "sudo apt-get update && sudo apt-get install -y ffmpeg",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "pip install ffmpeg",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install marshmallow",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install bump2version",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "curl https://www.github.com",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl https://www.github.com",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl https://github.com",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "bash get_actions.sh",
+    "why": "`bash` runs the script get_actions.sh; its effects depend on that file."
+  },
+  {
+    "command": "curl --version",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "ssh -V",
+    "why": "`ssh` contacts the network."
+  },
+  {
+    "command": "wget --version",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "curl -X POST https://api.github.com/repos/matchms/matchms/releases -H \"Authorization: token YOUR_GITHUB_TOKEN\" -d '{\"tag_name\": \"1.0.0\", \"body\": \"Release notes for version 1.0.0\"}'",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl -X POST https://api.github.com/repos/matchms/matchms/releases -H \"Authorization: token YOUR_GITHUB_TOKEN\" -d '{\"tag_name\": \"1.0.0\", \"body\": \"This release includes new features, changes, and bug fixes. See the CHANGELOG.md for details.\"}'",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl -X GET https://zenodo.org/api/records/?q=matchms",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl -X GET https://zenodo.org/api/records/1234567890",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl -X GET https://zenodo.org/api/records/?q=\"matchms\"",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl -X GET https://zenodo.org/api/records?q=matchms",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "pip install svgwrite",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "rm -r networkx.backends",
+    "why": "`rm` recursively deletes networkx.backends \u2014 inside the project."
+  },
+  {
+    "command": "pip install networkx",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install arcana",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install arcana",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "rm -r arcana",
+    "why": "`rm` recursively deletes arcana \u2014 inside the project."
+  },
+  {
+    "command": "pip install pytest",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip list | grep stix2",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip list | grep jsonargparse",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip list",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "sudo python test_stateless_interactions.py",
+    "why": "`sudo` runs with elevated privileges; effects below apply as root."
+  },
+  {
+    "command": "chmod +x /pact-python/pact/bin/pact/bin/pact-mock-service",
+    "why": "`chmod` chmods /pact-python/pact/bin/pact/bin/pact-mock-service \u2014 outside the project."
+  },
+  {
+    "command": "pip install pygame pygame-menu",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip list",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pygame.init()",
+    "why": "Command could not be parsed (expected a command); run it only after manual review."
+  },
+  {
+    "command": "curl -G --data-urlencode \"q=optionsMenu\" https://www.google.com/search",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "pip install marshmallow",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "bash checkout_script.sh",
+    "why": "`bash` runs the script checkout_script.sh; its effects depend on that file."
+  },
+  {
+    "command": "bash checkout_script.sh",
+    "why": "`bash` runs the script checkout_script.sh; its effects depend on that file."
+  },
+  {
+    "command": "pip install matplotlib",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "wget http://www.barre.nom.fr/medical/samples/dicom-files/O-002/1.2.3/",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "wget https://raw.githubusercontent.com/dicompyler/dicompyler-testdata/main/CT/000010.dcm",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "wget https://www.dicomlibrary.com/samplefiles/CT/000010.dcm",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "wget https://www.dicomlibrary.com/samplefiles/MR/000001.dcm",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "pip install matplotlib",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "wget https://drive.google.com/file/d/1j13XTTPCLX-8e7FE--1n5Staxz7GGNWm/view?usp=sharing",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "pip install matplotlib",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "wget https://drive.google.com/uc?id=1j13XTTPCLX-8e7FE--1n5Staxz7GGNWm",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "pip list | grep sqlparse",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install marshmallow",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install pyhf",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install beniget",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install beniget",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astunparse",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "find . -name \"*py\" -exec grep -H \"def parse_one\" {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "curl \"https://www.google.com/search?q=sqlglot+parse+sql\"",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl \"https://www.sqlglot.com\"",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl \"https://github.com/search?q=sqlglot\"",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl \"https://github.com/tobymao/sqlglot\"",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "echo \"Hello, we're experiencing an issue with the SQLGlot library where the character '#' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving with weird characters in text. Test$ is working, but not",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo \"Hello, we're experiencing an issue with the SQLGlot library where the character '#' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving with weird characters in text. Test$ is working, but not",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo \"Hello, we're experiencing an issue with the SQLGlot library where the character '#' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving with weird characters in text. Test$ is working, but not",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "curl -X POST https://api.github.com/repos/tobymao/sqlglot/discussions -d '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "curl https://api.github.com/",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl -X POST https://api.github.com/repos/tobymao/sqlglot/discussions -d '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "echo '{\"title\":\"Field name issue with tsql dialect\",\"body\":\"Hello, we\\'re experiencing an issue with the SQLGlot library where the character \\'#\\' at the end of a field name disappears when using parse_one with the tsql dialect. The query is valid in T-SQL. I used it to test how SQLGlot was behaving",
+    "why": "Command could not be parsed (unterminated double quote); run it only after manual review."
+  },
+  {
+    "command": "pip install sqlglot",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "python -c \"from sqlglot.core import parse_one; print(parse_one(''.join(open('reproduce.sql').readlines()), 'tsql').sql(dialect='tsql'))\"",
+    "why": "Inline `python` code performs: file access. Review the script body."
+  },
+  {
+    "command": "python -c \"from sqlglot.parser import parse_one; print(parse_one(''.join(open('reproduce.sql').readlines()), 'tsql').sql(dialect='tsql'))\"",
+    "why": "Inline `python` code performs: file access. Review the script body."
+  },
+  {
+    "command": "pip list",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install sqlglot",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "bash reproduce.sh",
+    "why": "`bash` runs the script reproduce.sh; its effects depend on that file."
+  },
+  {
+    "command": "bash reproduce.sh",
+    "why": "`bash` runs the script reproduce.sh; its effects depend on that file."
+  },
+  {
+    "command": "bash reproduce.sh",
+    "why": "`bash` runs the script reproduce.sh; its effects depend on that file."
+  },
+  {
+    "command": "bash reproduce.sh",
+    "why": "`bash` runs the script reproduce.sh; its effects depend on that file."
+  },
+  {
+    "command": "bash reproduce.sh",
+    "why": "`bash` runs the script reproduce.sh; its effects depend on that file."
+  },
+  {
+    "command": "bash reproduce.sh",
+    "why": "`bash` runs the script reproduce.sh; its effects depend on that file."
+  },
+  {
+    "command": "bash reproduce.sh",
+    "why": "`bash` runs the script reproduce.sh; its effects depend on that file."
+  },
+  {
+    "command": "bash reproduce.sh",
+    "why": "`bash` runs the script reproduce.sh; its effects depend on that file."
+  },
+  {
+    "command": "b2 authorize_account <accountID> <applicationKey>",
+    "why": "Command could not be parsed (redirect '>' has no target); run it only after manual review."
+  },
+  {
+    "command": "bash reproduce.sh",
+    "why": "`bash` runs the script reproduce.sh; its effects depend on that file."
+  },
+  {
+    "command": "bash reproduce.sh &",
+    "why": "`bash` runs the script reproduce.sh; its effects depend on that file."
+  },
+  {
+    "command": "bash reproduce.sh &",
+    "why": "`bash` runs the script reproduce.sh; its effects depend on that file."
+  },
+  {
+    "command": "bash reproduce.sh &",
+    "why": "`bash` runs the script reproduce.sh; its effects depend on that file."
+  },
+  {
+    "command": "chmod +x /B2_Command_Line_Tool/b2/console_tool.py",
+    "why": "`chmod` chmods /B2_Command_Line_Tool/b2/console_tool.py \u2014 outside the project."
+  },
+  {
+    "command": "bash reproduce.sh &",
+    "why": "`bash` runs the script reproduce.sh; its effects depend on that file."
+  },
+  {
+    "command": "pip install b2sdk",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install marshmallow",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "wget https://xkcd.com",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "pip install pyflakes",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install pyflakes",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "tmpfile=$(mktemp)\necho 'x = x' > $tmpfile\npyflakes $tmpfile",
+    "why": "`echo` writes $tmpfile \u2014 a path that can't be resolved."
+  },
+  {
+    "command": "tmpfile=$(mktemp)\necho 'x: int = x' > $tmpfile\npyflakes $tmpfile",
+    "why": "`echo` writes $tmpfile \u2014 a path that can't be resolved."
+  },
+  {
+    "command": "tmpfile=$(mktemp)\necho 'x: int = x' > $tmpfile\npyflakes $tmpfile",
+    "why": "`echo` writes $tmpfile \u2014 a path that can't be resolved."
+  },
+  {
+    "command": "tmpfile=$(mktemp)\necho 'x: int = x' > $tmpfile\npyflakes $tmpfile",
+    "why": "`echo` writes $tmpfile \u2014 a path that can't be resolved."
+  },
+  {
+    "command": "pip install zope.interface",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install --upgrade mypy",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "find . -name \"*.py\" -exec grep -l \"IPv4Network\" {} \\;",
+    "why": "`find \u2026 -exec` runs a command on every match; its effect is shown below."
+  },
+  {
+    "command": "pip install astarte-device-sdk-python",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip search astarte",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte-device-sdk-python",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install .",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install .",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte-device-sdk",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --index-url https://example.com/pypi",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --find-links https://example.com/packages",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --extra-index-url https://example.com/pypi",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --no-index --find-links https://example.com/packages",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --index-url https://example.com/pypi --trusted-host example.com",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --extra-index-url https://example.com/pypi --trusted-host example.com",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --no-index --find-links https://example.com/packages --trusted-host example.com",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --index-url https://example.com/pypi --no-index --find-links https://example.com/packages --trusted-host example.com",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --extra-index-url https://example.com/pypi --no-index --find-links https://example.com/packages --trusted-host example.com",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --no-index --find-links https://example.com/packages --trusted-host example.com",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --extra-index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --no-index --find-links https://example.com/packages --trusted-host example.com",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --no-index --find-links https://example.com/packages --trusted-host example.com --trusted-host example2.com",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --extra-index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --no-index --find-links https://example.com/packages --trusted-host example.com --trusted-host example2.com",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --no-index --find-links https://example.com/packages --trusted-host example.com --trusted-host example2.com --trusted-host example3.com",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --extra-index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --no-index --find-links https://example.com/packages --trusted-host example.com --trusted-host example2.com --trusted-host example3.com",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --no-index --find-links https://example.com/packages --trusted-host example.com --trusted-host example2.com --t",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --extra-index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --no-index --find-links https://example.com/packages --trusted-host example.com --trusted-host example2.c",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --no-index --find-links https://example.com/packages --trusted-host",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --extra-index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --no-index --find-links https://example.com/packages --truste",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --no-index --find-links",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --extra-index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --no-index --find",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url https",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --extra-index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url https",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --extra-index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url https",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --extra-index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url https",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --extra-index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url https",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --extra-index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url https",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --extra-index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url https",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --extra-index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url https",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --extra-index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url https",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --extra-index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url https",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --extra-index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url https",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --extra-index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url https",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --extra-index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url https",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --extra-index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url https",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --extra-index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url https",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --extra-index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url https",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --extra-index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url https",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "pip install astarte --extra-index-url https://example.com/pypi --extra-index-url https://example2.com/pypi --extra-index-url https://example3.com/pypi --extra-index-url https://example4.com/pypi --extra-index-url https://example5.com/pypi --extra-index-url https://example6.com/pypi --extra-index-url",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "rm -r temp_persistency_dir",
+    "why": "`rm` recursively deletes temp_persistency_dir \u2014 inside the project."
+  },
+  {
+    "command": "docker --version",
+    "why": "`docker` contacts the network."
+  },
+  {
+    "command": "curl \"https://www.google.com/search?q=copy_without_render\"",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "wget \"https://www.google.com/search?q=copy_without_render\"",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "apt-get update && apt-get install -y python3-yaml",
+    "why": "`apt-get` contacts the network."
+  },
+  {
+    "command": "ping girder.dandiarchive.org",
+    "why": "`ping` contacts the network."
+  },
+  {
+    "command": "traceroute girder.dandiarchive.org",
+    "why": "`traceroute` contacts the network."
+  },
+  {
+    "command": "ping girder.dandiarchive.org",
+    "why": "`ping` contacts the network."
+  },
+  {
+    "command": "curl https://girder.dandiarchive.org/",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "host girder.dandiarchive.org",
+    "why": "`host` contacts the network."
+  },
+  {
+    "command": "curl -v https://girder.dandiarchive.org/",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl \"http://www.google.com/search?q=IP+address+of+girder.dandiarchive.org\"",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "curl \"http://www.google.com/search?q=ruamel.yaml+0.18.6+known+issues\"",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "ping girder.dandiarchive.org",
+    "why": "`ping` contacts the network."
+  },
+  {
+    "command": "curl https://girder.dandiarchive.org/",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "host girder.dandiarchive.org",
+    "why": "`host` contacts the network."
+  },
+  {
+    "command": "curl https://girder.dandiarchive.org/",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "pip install deepdiff",
+    "why": "`pip` contacts the network."
+  },
+  {
+    "command": "nslookup girder.dandiarchive.org",
+    "why": "`nslookup` contacts the network."
+  },
+  {
+    "command": "ping girder.dandiarchive.org",
+    "why": "`ping` contacts the network."
+  },
+  {
+    "command": "curl https://girder.dandiarchive.org",
+    "why": "`curl` contacts the network."
+  },
+  {
+    "command": "wget https://gui.dandiarchive.org/#/folder/5e6d855776569eb93f451e50",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "wget https://girder.dandiarchive.org/api/v1/folder/5e6d855776569eb93f451e50",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "wget https://dandiarchive.org/api/v1/folder/5e6d855776569eb93f451e50",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "wget https://dandiarchive.org/api/v1/folder/5e6d855776569eb93f451e50/dandiset.yaml",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "host girder.dandiarchive.org",
+    "why": "`host` contacts the network."
+  },
+  {
+    "command": "wget https://75.2.60.5/api/v1/folder/5e6d855776569eb93f451e50/dandiset.yaml",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "host dandiarchive.org",
+    "why": "`host` contacts the network."
+  },
+  {
+    "command": "wget https://75.2.60.5:443/api/v1/folder/5e6d855776569eb93f451e50/dandiset.yaml",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "host dandiarchive.org",
+    "why": "`host` contacts the network."
+  },
+  {
+    "command": "wget https://75.2.60.5:443/api/v1/folder/5e6d855776569eb93f451e50/dandiset.yaml",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "host dandiarchive.org",
+    "why": "`host` contacts the network."
+  },
+  {
+    "command": "wget https://75.2.60.5:443/api/v1/folder/5e6d855776569eb93f451e50/dandiset.yaml",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "host dandiarchive.org",
+    "why": "`host` contacts the network."
+  },
+  {
+    "command": "wget https://75.2.60.5:443/api/v1/folder/5e6d855776569eb93f451e50/dandiset.yaml",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "host dandiarchive.org",
+    "why": "`host` contacts the network."
+  },
+  {
+    "command": "wget https://75.2.60.5:443/api/v1/folder/5e6d855776569eb93f451e50/dandiset.yaml",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "host dandiarchive.org",
+    "why": "`host` contacts the network."
+  },
+  {
+    "command": "wget https://75.2.60.5:443/api/v1/folder/5e6d855776569eb93f451e50/dandiset.yaml",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "host dandiarchive.org",
+    "why": "`host` contacts the network."
+  },
+  {
+    "command": "wget https://75.2.60.5:443/api/v1/folder/5e6d855776569eb93f451e50/dandiset.yaml",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "host dandiarchive.org",
+    "why": "`host` contacts the network."
+  },
+  {
+    "command": "wget https://75.2.60.5:443/api/v1/folder/5e6d855776569eb93f451e50/dandiset.yaml",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "host dandiarchive.org",
+    "why": "`host` contacts the network."
+  },
+  {
+    "command": "wget https://75.2.60.5:443/api/v1/folder/5e6d855776569eb93f451e50/dandiset.yaml",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "host dandiarchive.org",
+    "why": "`host` contacts the network."
+  },
+  {
+    "command": "wget https://75.2.60.5:443/api/v1/folder/5e6d855776569eb93f451e50/dandiset.yaml",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "host dandiarchive.org",
+    "why": "`host` contacts the network."
+  },
+  {
+    "command": "wget https://75.2.60.5:443/api/v1/folder/5e6d855776569eb93f451e50/dandiset.yaml",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "host dandiarchive.org",
+    "why": "`host` contacts the network."
+  },
+  {
+    "command": "wget https://75.2.60.5:443/api/v1/folder/5e6d855776569eb93f451e50/dandiset.yaml",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "host dandiarchive.org",
+    "why": "`host` contacts the network."
+  },
+  {
+    "command": "wget https://75.2.60.5:443/api/v1/folder/5e6d855776569eb93f451e50/dandiset.yaml",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "host dandiarchive.org",
+    "why": "`host` contacts the network."
+  },
+  {
+    "command": "wget https://75.2.60.5:443/api/v1/folder/5e6d855776569eb93f451e50/dandiset.yaml",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "host dandiarchive.org",
+    "why": "`host` contacts the network."
+  },
+  {
+    "command": "wget https://75.2.60.5:443/api/v1/folder/5e6d855776569eb93f451e50/dandiset.yaml",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "host dandiarchive.org",
+    "why": "`host` contacts the network."
+  },
+  {
+    "command": "wget https://75.2.60.5:443/api/v1/folder/5e6d855776569eb93f451e50/dandiset.yaml",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "host dandiarchive.org",
+    "why": "`host` contacts the network."
+  },
+  {
+    "command": "wget https://75.2.60.5:443/api/v1/folder/5e6d855776569eb93f451e50/dandiset.yaml",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "host dandiarchive.org",
+    "why": "`host` contacts the network."
+  },
+  {
+    "command": "wget https://75.2.60.5:443/api/v1/folder/5e6d855776569eb93f451e50/dandiset.yaml",
+    "why": "`wget` contacts the network."
+  },
+  {
+    "command": "host dandiarchive.org",
+    "why": "`host` contacts the network."
+  }
+]
